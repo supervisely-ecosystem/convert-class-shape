@@ -1,41 +1,14 @@
 <div>
-    hello
     <pre>{{state}}</pre>
-    <pre>{{data}}</pre>
-    <div v-if="data">
-        {{data.shapeSelectors}}
-        <div v-for="(shapes, className) in data.shapeSelectors">
-            <el-select style="margin-top: 10px;" v-model="state.selectors[className]" placeholder="Select new shape">
-                <el-option
-                        v-for="item in shapes"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value">
-                </el-option>
-            </el-select>
-        </div>
+<!--    <pre>{{data}}</pre>-->
+    <div v-for="(shapes, className) in data.shapeSelectors">
+        <el-select style="margin-top: 10px;" v-model="state.selectors[className]" placeholder="Select new shape">
+            <el-option
+                    v-for="item in shapes"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+            </el-option>
+        </el-select>
     </div>
-    <!--    <div v-for="(shapes, class) in data.shapeSelectors" >-->
-    <!--        {{class}} {{shapes}}-->
-    <!--        <el-select v-model="state.selectors[class]" placeholder="Select new shape">-->
-    <!--            <el-option-->
-    <!--                    v-for="item in shapes"-->
-    <!--                    :key="item.value"-->
-    <!--                    :label="item.label"-->
-    <!--                    :value="item.value">-->
-    <!--            </el-option>-->
-    <!--        </el-select>-->
-    <!--    </div>-->
-    <!--    :key="class"-->
-    <!--    <el-select v-for="(shapes, class) in data.shapeSelectors"-->
-    <!--               v-model="state.selectors[class]"-->
-    <!--               placeholder="Select new shape"-->
-    <!--               :key="class">-->
-    <!--        <el-option-->
-    <!--                v-for="item in shapes"-->
-    <!--                :key="item.value"-->
-    <!--                :label="item.label"-->
-    <!--                :value="item.value">-->
-    <!--        </el-option>-->
-    <!--    </el-select>-->
 </div>
