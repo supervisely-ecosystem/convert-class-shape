@@ -13,5 +13,5 @@
   "isolate": true,
   "icon": "https://img.icons8.com/fluent/96/000000/currency-exchange.png",
   "icon_background": "#FFFFFF",
-  "icon_cover": false
+  "icon_cover": true
 }
