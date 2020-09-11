@@ -5,8 +5,6 @@ import supervisely_lib as sly
 
 my_app = sly.AppService()
 
-LENGTH = int(os.environ['modal.state.length'])
-
 
 @my_app.callback("generate")
 @sly.timeit
@@ -19,20 +17,85 @@ def generate_random_string(api: sly.Api, task_id, context, state, app_logger):
 @my_app.callback("preprocessing")
 @sly.timeit
 def preprocessing(api: sly.Api, task_id, context, state, app_logger):
-    sly.logger.info("do something here")
+    sly.logger.info("XXX something here")
 
 
 def main():
-    sly.logger.info("Script arguments from modal dialog box",  extra={"length: ": LENGTH})
-
     api = sly.Api.from_env()
 
     data = {
-        "randomString": "hello!"
+        "shapeSelectors": {
+            "person": [
+                {
+                    "value": "remain unchanged",
+                    "label": "remain unchanged"
+                },
+                {
+                    "value": "polygon",
+                    "label": "polygon"
+                },
+                {
+                    "value": "bitmap",
+                    "label": "bitmap"
+                },
+                {
+                    "value": "any",
+                    "label": "any shape"
+                }
+            ],
+            "car": [
+                {
+                    "value": "remain unchanged",
+                    "label": "remain unchanged"
+                },
+                {
+                    "value": "rectangle",
+                    "label": "rectangle"
+                },
+                {
+                    "value": "any",
+                    "label": "any shape"
+                }
+            ],
+            "car1": [
+                {
+                    "value": "remain unchanged",
+                    "label": "remain unchanged"
+                },
+                {
+                    "value": "rectangle",
+                    "label": "rectangle"
+                },
+                {
+                    "value": "any",
+                    "label": "any shape"
+                }
+            ],
+            "car2": [
+                {
+                    "value": "remain unchanged",
+                    "label": "remain unchanged"
+                },
+                {
+                    "value": "rectangle",
+                    "label": "rectangle"
+                },
+                {
+                    "value": "any",
+                    "label": "any shape"
+                }
+            ]
+        }
     }
 
     state = {
-        "prefix": "abc_"
+        "a": "b",
+        "selectors": {
+            "person": "",
+            "car": "",
+            "car1": "",
+            "car2": ""
+        }
     }
 
     initial_events = [
@@ -40,12 +103,7 @@ def main():
             "state": None,
             "context": None,
             "command": "preprocessing",
-        }#,
-        # {
-        #     "state": None,
-        #     "context": None,
-        #     "command": "stop",
-        # }
+        }
     ]
 
     # Run application service
