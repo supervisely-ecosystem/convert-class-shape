@@ -6,7 +6,7 @@
     "converter"
   ],
   "description": "Converts shapes of classes (e.g. polygon to bitmap) and all corresponding objects",
-  "docker_image": "docker.deepsystems.io/supervisely/five/base-py-sdk-internal:app",
+  "docker_image": "docker.deepsystems.io/supervisely/five/base-py-sdk-internal:apps",
   "main_script": "src/convert_class_shape.py",
   "gui_template": "src/gui.html",
   "task_location": "workspace_tasks",

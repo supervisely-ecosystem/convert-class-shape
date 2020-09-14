@@ -5,6 +5,13 @@ import supervisely_lib as sly
 
 my_app = sly.AppService()
 
+TEAM_ID = int(os.environ['context.teamId'])
+WORKSPACE_ID = int(os.environ['context.workspaceId'])
+PROJECT_ID = int(os.environ['modal.state.slyProjectId'])
+
+ORIGINAL_META = None
+REMAIN_UNCHANGED = "remain unchanged"
+
 
 @my_app.callback("generate")
 @sly.timeit
@@ -18,6 +25,25 @@ def generate_random_string(api: sly.Api, task_id, context, state, app_logger):
 @sly.timeit
 def preprocessing(api: sly.Api, task_id, context, state, app_logger):
     sly.logger.info("XXX something here")
+
+
+def init_data_and_state(api: sly.Api):
+    global ORIGINAL_META
+
+    data = {}
+    state = {}
+    meta_json = api.project.get_meta(PROJECT_ID)
+    ORIGINAL_META = sly.ProjectMeta.from_json(meta_json)
+
+    shape_selectors = {}
+    for obj_class in ORIGINAL_META.obj_classes:
+        obj_class: sly.ObjClass
+        possible_shapes = []
+        possible_shapes.append({"value": REMAIN_UNCHANGED, "label": REMAIN_UNCHANGED})
+
+        #shape_selectors[obj_class.name] = []
+
+
 
 
 def main():
