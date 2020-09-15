@@ -1,14 +1,43 @@
-<div>
-    <pre>{{state}}</pre>
-<!--    <pre>{{data}}</pre>-->
-    <div v-for="(shapes, className) in data.shapeSelectors">
-        <el-select style="margin-top: 10px;" v-model="state.selectors[className]" placeholder="Select new shape">
-            <el-option
-                    v-for="item in shapes"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value">
-            </el-option>
-        </el-select>
-    </div>
+<div id="app_convert_class_shape">
+    <sly-style>
+        #app_convert_class_shape .shape-icon {
+        background-color: #ffebe3;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        line-height: 32px;
+        font-size: 16px;
+        color: #ff8461;
+        text-align: center;
+        }
+    </sly-style>
+
+    <sly-style>
+        #app_convert_class_shape .color-icon {
+        display: inline-block;
+        background: red;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        font-size: 12px;
+        }
+    </sly-style>
+
+    <el-row :gutter="20" v-for="(shapes, className) in data.shapeSelectors" style="margin-top: 10px;">
+        <el-col :span="1"><i class="zmdi shape-icon zmdi-brush" style="margin-top: 3px;"></i></el-col>
+        <el-col :span="2">
+            <div style="margin-top: 10px;">{{className}}</div>
+        </el-col>
+        <el-col :span="6">
+            <el-select v-model="state.selectors[className]" placeholder="Select new shape">
+                <el-option
+                        v-for="item in shapes"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                </el-option>
+            </el-select>
+        </el-col>
+    </el-row>
+
 </div>
