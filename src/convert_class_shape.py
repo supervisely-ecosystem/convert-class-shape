@@ -67,30 +67,30 @@ def init_data_and_state(api: sly.Api):
     data = {}
     state = {}
     state["selectors"] = {}
+    table = []
+
     meta_json = api.project.get_meta(PROJECT_ID)
     ORIGINAL_META = sly.ProjectMeta.from_json(meta_json)
 
-    class_descriptions = {}
-    shape_selectors = {}
     for obj_class in ORIGINAL_META.obj_classes:
         obj_class: sly.ObjClass
+        row = {
+            "name": obj_class.name,
+            "color": sly.color.rgb2hex(obj_class.color),
+            "shape": obj_class.geometry_type.geometry_name(),
+        }
+
         possible_shapes = []
         possible_shapes.append({"value": REMAIN_UNCHANGED, "label": REMAIN_UNCHANGED})
-
         transforms = obj_class.geometry_type.allowed_transformations()
         for gname in transforms:
             possible_shapes.append({"value": gname, "label": gname})
 
-        shape_selectors[obj_class.name] = possible_shapes
+        row["convertTo"] = possible_shapes
         state["selectors"][obj_class.name] = REMAIN_UNCHANGED
+        table.append(row)
 
-        class_descriptions[obj_class.name] = {
-            "color": sly.color.rgb2hex(obj_class.color),
-            "icon": shape_to_icon(obj_class.geometry_type)
-        }
-
-    data["shapeSelectors"] = shape_selectors
-    data["classDescriptions"] = class_descriptions
+    data["table"] = table
     return data, state
 
 
@@ -108,41 +108,33 @@ def main():
         }
     ]
 
-    tableData: [{
-        date: '2016-05-03',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles'
-    }, {
-        date: '2016-05-02',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles'
-    }, {
-        date: '2016-05-04',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles'
-    }, {
-        date: '2016-05-01',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles'
-    }]
+    # data["table"] = [{
+    #     "date": '2016-05-03',
+    #     "name": 'Tom',
+    #     "address": 'No. 189, Grove St, Los Angeles'
+    # }, {
+    #     "date": '2016-05-02',
+    #     "name": 'Tom',
+    #     "address": 'No. 189, Grove St, Los Angeles'
+    # }, {
+    #     "date": '2016-05-04',
+    #     "name": 'Tom',
+    #     "address": 'No. 189, Grove St, Los Angeles'
+    # }, {
+    #     "date": '2016-05-01',
+    #     "name": 'Tom',
+    #     "address": 'No. 189, Grove St, Los Angeles'
+    # }]
 
-    data["table"] = [{
-        "date": '2016-05-03',
-        "name": 'Tom',
-        "address": 'No. 189, Grove St, Los Angeles'
-    }, {
-        "date": '2016-05-02',
-        "name": 'Tom',
-        "address": 'No. 189, Grove St, Los Angeles'
-    }, {
-        "date": '2016-05-04',
-        "name": 'Tom',
-        "address": 'No. 189, Grove St, Los Angeles'
-    }, {
-        "date": '2016-05-01',
-        "name": 'Tom',
-        "address": 'No. 189, Grove St, Los Angeles'
-    }]
+    # data["options"] = [{
+    #     "value": 'Option1',
+    #     "label": 'Option1'
+    # }, {
+    #     "value": 'Option2',
+    #     "label": 'Option2'
+    # }]
+
+    # state["value"] = ""
 
     # Run application service
     my_app.run(data=data, state=state, initial_events=initial_events)
