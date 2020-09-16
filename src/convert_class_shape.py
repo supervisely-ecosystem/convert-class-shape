@@ -60,11 +60,13 @@ def init_data_and_state(api: sly.Api):
 def convert_annotation(ann: sly.Annotation, dst_meta):
     new_labels = []
     for lbl in enumerate(ann.labels):
+        lbl: sly.Label
         new_cls = dst_meta.obj_classes.get(lbl.obj_class.name)
         if lbl.obj_class.geometry_type == new_cls.geometry_type:
             new_labels.append(lbl)
         else:
-            pass
+            converted_labels = lbl.convert(new_cls)
+            new_labels.extend(converted_labels)
     return ann.clone(labels=new_labels)
 
 
