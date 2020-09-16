@@ -1,46 +1,4 @@
 <div id="app_convert_class_shape">
-<!--    <sly-style>-->
-<!--        #app_convert_class_shape .shape-icon {-->
-<!--        background-color: #ffebe3;-->
-<!--        width: 32px;-->
-<!--        height: 32px;-->
-<!--        border-radius: 50%;-->
-<!--        line-height: 32px;-->
-<!--        font-size: 16px;-->
-<!--        color: #ff8461;-->
-<!--        text-align: center;-->
-<!--        }-->
-
-<!--        #app_convert_class_shape .shape-icon .icons8-polygon {-->
-<!--        font-size: 8px;-->
-<!--        }-->
-
-<!--        #app_convert_class_shape .color-icon {-->
-<!--        display: inline-block;-->
-<!--        background: red;-->
-<!--        width: 10px;-->
-<!--        height: 10px;-->
-<!--        border-radius: 50%;-->
-<!--        font-size: 12px;-->
-<!--        }-->
-<!--    </sly-style>-->
-
-<!--    <el-row :gutter="20" v-for="(shapes, className) in data.shapeSelectors" style="margin-top: 10px;">-->
-<!--        <el-col :span="1" v-html="data.classDescriptions[className].icon"></el-col>-->
-<!--        <el-col :span="2">-->
-<!--            <div style="margin-top: 10px;">{{className}}</div>-->
-<!--        </el-col>-->
-<!--        <el-col :span="6">-->
-<!--            <el-select v-model="state.selectors[className]" placeholder="Select new shape">-->
-<!--                <el-option-->
-<!--                        v-for="item in shapes"-->
-<!--                        :key="item.value"-->
-<!--                        :label="item.label"-->
-<!--                        :value="item.value">-->
-<!--                </el-option>-->
-<!--            </el-select>-->
-<!--        </el-col>-->
-<!--    </el-row>-->
     <sly-style>
         #app_convert_class_shape .color-icon {
             display:inline-block;
@@ -48,7 +6,29 @@
             background: red;
             width: 10px;
             height: 10px;
-            margin-right: 3px;
+            margin-right: 5px;
+        }
+
+        #app_convert_class_shape .shape-icon {
+            display:inline-block;
+            background-color: #ffebe3;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            line-height: 32px;
+            font-size: 16px;
+            color: #ff8461;
+            text-align: center;
+            margin-right: 5px;
+        }
+
+        #app_convert_class_shape .shape-icon .icons8-polygon {
+            font-size: 8px;
+        }
+
+        #app_convert_class_shape .icon-cell {
+            display: flex;
+            align-items: center;
         }
     </sly-style>
     <el-table class="ultra-table"
@@ -61,7 +41,14 @@
                 <b class="color-icon" :style="{background: row.color}"></b>{{row.color}}
             </template>
         </el-table-column>
-        <el-table-column prop="shape" label="Shape" width="180"></el-table-column>
+        <el-table-column prop="shape" label="Shape" width="180">
+            <div slot-scope="{ row }" class="icon-cell">
+                <div class="shape-icon" :style="{'background-color':row.shapeIcon.bg, 'color': row.shapeIcon.color}">
+                    <i :class="[row.shapeIcon.icon]"></i>
+                </div>
+                {{row.shape}}
+            </div>
+        </el-table-column>
         <el-table-column prop="convertTo" label="convert to">
             <template slot-scope="{ row }">
                 <el-select v-model="state.selectors[row.name]">
