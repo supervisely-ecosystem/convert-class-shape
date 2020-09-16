@@ -10,9 +10,11 @@
         color: #ff8461;
         text-align: center;
         }
-    </sly-style>
 
-    <sly-style>
+        #app_convert_class_shape .shape-icon .icons8-polygon {
+            font-size: 8px;
+        }
+
         #app_convert_class_shape .color-icon {
         display: inline-block;
         background: red;
@@ -24,7 +26,7 @@
     </sly-style>
 
     <el-row :gutter="20" v-for="(shapes, className) in data.shapeSelectors" style="margin-top: 10px;">
-        <el-col :span="1"><i class="zmdi shape-icon zmdi-brush" style="margin-top: 3px;"></i></el-col>
+        <el-col :span="1" v-html="data.classDescriptions[className].icon"></el-col>
         <el-col :span="2">
             <div style="margin-top: 10px;">{{className}}</div>
         </el-col>
@@ -39,5 +41,11 @@
             </el-select>
         </el-col>
     </el-row>
+
+    <el-table :data="data.table" style="width: 100%">
+      <el-table-column prop="date" label="Date" width="180"> </el-table-column>
+      <el-table-column prop="name" label="Name" width="180"> </el-table-column>
+      <el-table-column prop="address" label="Address"></el-table-column>
+    </el-table>
 
 </div>
