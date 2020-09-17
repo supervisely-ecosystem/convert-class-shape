@@ -142,7 +142,7 @@ def convert(api: sly.Api, task_id, context, state, app_logger):
             api.annotation.upload_anns(new_img_ids, new_anns)
 
             current_progress += len(img_infos)
-            api.task.set_field(task_id, "data.progress", int(total_progress * 100 / current_progress))
+            api.task.set_field(task_id, "data.progress", int(current_progress * 100 / total_progress))
             ds_progress.iters_done_report(len(img_infos))
 
     api.task.set_output_project(task_id, dst_project.id, dst_project.name)
