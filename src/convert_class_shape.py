@@ -155,6 +155,10 @@ def convert(api: sly.Api, task_id, context, state, app_logger):
         {
             "field": "data.resultProject",
             "payload": dst_project.name,
+        },
+        {
+            "field": "data.resultProjectId",
+            "payload": dst_project.id,
         }
     ]
     api.task.set_fields(task_id, fields)
