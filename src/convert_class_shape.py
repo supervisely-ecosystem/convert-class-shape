@@ -121,7 +121,9 @@ def convert(api: sly.Api, task_id, context, state, app_logger):
     dst_meta = src_meta.clone(obj_classes=sly.ObjClassCollection(new_classes))
     api.project.update_meta(dst_project.id, dst_meta.to_json())
 
-    ds_progress = sly.Progress('Processing:', total_cnt=api.project.get_images_count(src_project.id))
+    total_progress = api.project.get_images_count(src_project.id)
+    current_progress = 0
+    ds_progress = sly.Progress('Processing:', total_cnt=total_progress)
     for ds_info in api.dataset.get_list(src_project.id):
 
         dst_dataset = api.dataset.create(dst_project.id, ds_info.name)
@@ -139,6 +141,8 @@ def convert(api: sly.Api, task_id, context, state, app_logger):
             new_img_ids = [x.id for x in new_img_infos]
             api.annotation.upload_anns(new_img_ids, new_anns)
 
+            current_progress += len(img_infos)
+            api.task.set_field(task_id, "data.progress", int(total_progress * 100 / current_progress))
             ds_progress.iters_done_report(len(img_infos))
 
     api.task.set_output_project(task_id, dst_project.id, dst_project.name)
