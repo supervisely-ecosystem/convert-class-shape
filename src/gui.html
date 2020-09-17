@@ -61,7 +61,8 @@
             </el-table-column>
             <el-table-column prop="convertTo" label="convert to">
                 <template slot-scope="{ row }">
-                    <el-select v-model="state.selectors[row.name]" :disabled="data.started === true">
+                    <el-select v-model="state.selectors[row.name]"
+                               :disabled="data.started === true || row.convertTo.length === 1">
                         <el-option
                                 v-for="item in row.convertTo"
                                 :key="item.value"

@@ -43,11 +43,12 @@ def init_data_and_state(api: sly.Api):
             "shapeIcon": SHAPE_TO_ICON.get(obj_class.geometry_type, UNKNOWN_ICON)
         }
 
-        possible_shapes = []
-        possible_shapes.append({"value": REMAIN_UNCHANGED, "label": REMAIN_UNCHANGED})
-        transforms = obj_class.geometry_type.allowed_transformations()
-        for gname in transforms:
-            possible_shapes.append({"value": gname, "label": gname})
+        possible_shapes = [{"value": REMAIN_UNCHANGED, "label": REMAIN_UNCHANGED}]
+        transforms = obj_class.geometry_type.allowed_transforms()
+        for g in transforms:
+            possible_shapes.append({"value": g.geometry_name(), "label": g.geometry_name()})
+
+        sly.logger.debug("{!r} -> {}".format(obj_class.geometry_type.geometry_name(), possible_shapes))
 
         row["convertTo"] = possible_shapes
         state["selectors"][obj_class.name] = REMAIN_UNCHANGED
