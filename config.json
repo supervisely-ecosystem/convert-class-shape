@@ -14,5 +14,9 @@
   "isolate": true,
   "icon": "https://i.imgur.com/TxR0dfX.png",
   "icon_background": "#FFFFFF",
-  "icon_cover": true
+  "icon_cover": true,
+  "context_menu": {
+    "target": ["images_project"],
+    "context_category": "Converter"
+  }
 }
