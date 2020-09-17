@@ -32,7 +32,9 @@
         }
     </sly-style>
 
-    <sly-card v-if="data.started === true" style="margin-bottom: 10px"> <el-progress :percentage="data.progress"></el-progress> </sly-card>
+    <sly-card v-if="data.started === true" style="margin-bottom: 10px">
+        <el-progress :percentage="data.progress"></el-progress>
+    </sly-card>
 
     <sly-card title="Shapes transformation" subtitle="Define destination shapes for one or several classes">
         <div slot="header">
@@ -75,12 +77,17 @@
         </el-table>
     </sly-card>
 
-    <el-dialog
-      :visible.sync="state.showDialog"
-      size="tiny"
-      title="You should select at least one transformation">
-      <span class="dialog-footer" slot="footer">
-        <el-button @click="state.showDialog = false" type="primary">OK</el-button>
-      </span>
+    <el-dialog :visible.sync="state.showWarningDialog" size="tiny" title="Warning">
+        <span>Please, define at least one transformation</span>
+        <span class="dialog-footer" slot="footer">
+            <el-button @click="state.showWarningDialog = false" type="primary">OK</el-button>
+        </span>
+    </el-dialog>
+
+    <el-dialog :visible.sync="state.showFinishDialog" size="tiny" title='Finished'>
+        <span>Project has been successfully created: <br> {{data.resultProject}} </span>
+        <span class="dialog-footer" slot="footer">
+            <el-button @click="state.showFinishDialog = false" type="primary">OK</el-button>
+        </span>
     </el-dialog>
 </div>

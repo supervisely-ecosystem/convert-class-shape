@@ -60,8 +60,7 @@ def init_data_and_state(api: sly.Api):
 
 def convert_annotation(ann: sly.Annotation, dst_meta):
     new_labels = []
-    for lbl in enumerate(ann.labels):
-        lbl: sly.Label
+    for lbl in ann.labels:
         new_cls = dst_meta.obj_classes.get(lbl.obj_class.name)
         if lbl.obj_class.geometry_type == new_cls.geometry_type:
             new_labels.append(lbl)
@@ -103,7 +102,7 @@ def convert(api: sly.Api, task_id, context, state, app_logger):
     if need_action is False:
         fields = [
             {
-                "field": "state.showDialog",
+                "field": "state.showWarningDialog",
                 "payload": True
             },
             {
@@ -119,7 +118,7 @@ def convert(api: sly.Api, task_id, context, state, app_logger):
                                      change_name_if_conflict=True)
     sly.logger.info('Destination project is created.',
                     extra={'project_id': dst_project.id, 'project_name': dst_project.name})
-    dst_meta = src_meta.clone(obj_classes=new_classes)
+    dst_meta = src_meta.clone(obj_classes=sly.ObjClassCollection(new_classes))
     api.project.update_meta(dst_project.id, dst_meta.to_json())
 
     ds_progress = sly.Progress('Processing:', total_cnt=api.project.get_images_count(src_project.id))
@@ -134,7 +133,7 @@ def convert(api: sly.Api, task_id, context, state, app_logger):
             ann_infos = api.annotation.download_batch(ds_info.id, img_ids)
             anns = [sly.Annotation.from_json(x.annotation, src_meta) for x in ann_infos]
 
-            new_anns = [convert_annotation(ann) for ann in anns]
+            new_anns = [convert_annotation(ann, dst_meta) for ann in anns]
 
             new_img_infos = api.image.upload_ids(dst_dataset.id, img_names, img_ids, metas=img_metas)
             new_img_ids = [x.id for x in new_img_infos]
@@ -144,6 +143,18 @@ def convert(api: sly.Api, task_id, context, state, app_logger):
 
     api.task.set_output_project(task_id, dst_project.id, dst_project.name)
 
+    fields = [
+        {
+            "field": "state.showFinishDialog",
+            "payload": True
+        },
+        {
+            "field": "data.resultProject",
+            "payload": dst_project.name,
+        }
+    ]
+    api.task.set_fields(task_id, fields)
+    return
 
 
 def main():
@@ -152,8 +163,10 @@ def main():
 
     data["started"] = False
     data["progress"] = 0
+    data["resultProject"] = ""
 
-    state["showDialog"] = False
+    state["showWarningDialog"] = False
+    state["showFinishDialog"] = False
 
     # Run application service
     my_app.run(data=data, state=state)

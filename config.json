@@ -9,6 +9,7 @@
   "docker_image": "docker.deepsystems.io/supervisely/five/base-py-sdk-internal:apps",
   "main_script": "src/convert_class_shape.py",
   "gui_template": "src/gui.html",
+  "modal_template": "src/modal.html",
   "task_location": "workspace_tasks",
   "isolate": true,
   "icon": "https://i.imgur.com/TxR0dfX.png",
