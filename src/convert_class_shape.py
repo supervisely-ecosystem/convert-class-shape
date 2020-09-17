@@ -158,7 +158,7 @@ def convert(api: sly.Api, task_id, context, state, app_logger):
         }
     ]
     api.task.set_fields(task_id, fields)
-    return
+    my_app.stop()
 
 
 def main():
