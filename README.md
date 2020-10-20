@@ -55,6 +55,10 @@ Default `remain unchanged` option is selected and means that class and all its o
 
 <img src="https://i.imgur.com/mssxns3.png"/>
 
+### Step 4: Press RUN button
+
+Press `Run` button. The progress bas will appear in `Output` section. 
+
 ## Explanation
     
 - Result project name = original name + "(new shapes)" suffix
