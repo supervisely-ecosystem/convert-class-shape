@@ -43,9 +43,9 @@ Go to "Context Menu" (images project or dataset) -> "Run App" -> "Transform" -> 
 <img src="https://i.imgur.com/6jVrnAK.png" width="600"/>
 
 ### Step 2:  Waiting until the app is started
-Once app is started, new task appear in workspace tasks. Monitor progress from "Tasks" list.
+Once app is started, new task appear in workspace tasks. Wait message `Application is started ...` (1) and then press `Open` button (2).
 
-<img src="https://i.imgur.com/JqHh9pZ.png"/>
+<img src="https://i.imgur.com/eeA4VMQ.png"/>
 
 ## Explanation
     
