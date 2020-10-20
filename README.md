@@ -65,6 +65,10 @@ App creates new project and it will appear in `Output` section.
 
 <img src="https://i.imgur.com/79HnmH0.png" width="450"/>
 
+### Step 5: App shuts down automatically
+
+done!
+
 ## Explanation
     
 - Result project name = original name + "(new shapes)" suffix
