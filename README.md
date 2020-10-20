@@ -47,6 +47,10 @@ Once app is started, new task appear in workspace tasks. Wait message `Applicati
 
 <img src="https://i.imgur.com/eeA4VMQ.png"/>
 
+### Step 3: Define transformations
+
+<img src="https://i.imgur.com/mssxns3.png"/>
+
 ## Explanation
     
 - Result project name = original name + "(new shapes)" suffix
