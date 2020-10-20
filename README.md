@@ -55,9 +55,15 @@ Default `remain unchanged` option is selected and means that class and all its o
 
 <img src="https://i.imgur.com/mssxns3.png"/>
 
-### Step 4: Press RUN button
+### Step 4: Press RUN button and wait
 
-Press `Run` button. The progress bas will appear in `Output` section. 
+Press `Run` button. The progress bas will appear in `Output` section. Also you can monitor progress from tasks list of the current workspace.
+
+<img src="https://i.imgur.com/rCNNniF.png"/>
+
+App creates new project and it will appear in `Output` section. 
+
+<img src="https://i.imgur.com/79HnmH0.png"/>
 
 ## Explanation
     
