@@ -49,9 +49,9 @@ Once app is started, new task appear in workspace tasks. Wait message `Applicati
 
 ### Step 3: Define transformations
 
-App contains 3 sections: information about input project, information about output and the list of all classes from input project. In column `CONVERT TO` there are dropdown lists in front of each class (row of the table). You have to define transformations for classes of interest. Keep in mind that dropdown lists contains only possible options that 
+App contains 3 sections: information about input project, information about output and the list of all classes from input project. In column `CONVERT TO` there are dropdown lists in front of each class (row of the table). You have to define transformations for classes of interest. 
 
-By default `remain unchanged` option is selected. It means that class and all its objects will be copied without modification to the new project. Dropdown lists only contain allowed shapes (see <a href="#Overview">Overview</a>), for example `Rectangle` can not be transformed to `Polyline` or `Point`. 
+Default `remain unchanged` option is selected and means that class and all its objects will be copied without modification to a new project. Dropdown lists only contain allowed shapes (see <a href="#Overview">Overview</a>), for example `Rectangle` can not be transformed to `Polyline` or `Point`. 
 
 <img src="https://i.imgur.com/mssxns3.png"/>
 
