@@ -59,11 +59,11 @@ Default `remain unchanged` option is selected and means that class and all its o
 
 Press `Run` button. The progress bas will appear in `Output` section. Also you can monitor progress from tasks list of the current workspace.
 
-<img src="https://i.imgur.com/rCNNniF.png" width="300"/>
+<img src="https://i.imgur.com/rCNNniF.png" width="450"/>
 
 App creates new project and it will appear in `Output` section. 
 
-<img src="https://i.imgur.com/79HnmH0.png" width="300"/>
+<img src="https://i.imgur.com/79HnmH0.png" width="450"/>
 
 ## Explanation
     
