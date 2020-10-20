@@ -178,7 +178,6 @@ def main():
 
     # Run application service
     my_app.run(data=data, state=state)
-    my_app.wait_all()
 
 
 if __name__ == "__main__":
