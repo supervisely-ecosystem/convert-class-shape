@@ -38,12 +38,11 @@ This app covers following transformations:
 
 ### Step 1: Run from context menu of project / dataset
 
-Go to "Context Menu" (images project or dataset) -> "Run App" -> "Transform" -> "Unpack AnyShape Classes"
+Go to "Context Menu" (images project or dataset) -> "Run App" -> "Transform" -> "Convert Class Shape"
 
-<img src="https://i.imgur.com/r8AlpZC.png" width="600"/>
+<img src="https://i.imgur.com/6jVrnAK.png" width="600"/>
 
-### Step 2:  Waiting until the task finishes
-
+### Step 2:  Waiting until the app is started
 Once app is started, new task appear in workspace tasks. Monitor progress from "Tasks" list.
 
 <img src="https://i.imgur.com/JqHh9pZ.png"/>
