@@ -67,7 +67,7 @@ App creates new project and it will appear in `Output` section. Result project n
 
 ### Step 5: App shuts down automatically
 
-Even if app is finished, you can always open it from tasks list in `Read Only` mode to see Input project, list of applied transformations and Output project.   
+Even if app is finished, you can always use it as a history: open it from tasks list in `Read Only` mode to check Input project, list of applied transformations and Output project. 
 
 ## Explanation
     
