@@ -31,7 +31,7 @@ This app covers following transformations:
 - from `Rectangle` to `Polygon`, `Bitmap` and `AnyShape`
 - from `Graph` (i.e. `Keypoints`) to `Rectangle` and `AnyShape`
 - from `Point` to `AnyShape`
-- `Cuboid`, `Cuboid3d`, `Pointcloud` (segmentation of point clouds), `Point3d`, are not supported yet (send us a feature request if you need it)
+- `Cuboid`, `Cuboid3d`, `Pointcloud` (segmentation of point clouds), `Point3d` are not supported yet (send us a feature request if you need it)
 
 
 ## How To Run
