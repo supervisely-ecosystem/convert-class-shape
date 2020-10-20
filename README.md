@@ -61,13 +61,13 @@ Press `Run` button. The progress bas will appear in `Output` section. Also you c
 
 <img src="https://i.imgur.com/rCNNniF.png" width="450"/>
 
-App creates new project and it will appear in `Output` section. 
+App creates new project and it will appear in `Output` section. Result project name = original name + "(new shapes)" suffix.
 
 <img src="https://i.imgur.com/79HnmH0.png" width="450"/>
 
 ### Step 5: App shuts down automatically
 
-done!
+Even if app is finished, you can always open it from tasks list in `Read Only` mode to see Input project, list of applied transformations and Output project.   
 
 ## Explanation
     
