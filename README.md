@@ -1,6 +1,6 @@
 <div align="center" markdown> 
 
-<img src="https://i.imgur.com/BnuiQOg.png"/>
+<img src="https://hotpot.ai/designs/thumbnails/chrome-promotional-marquee/12.jpg"/>
 
 # Convert Class Shape
   
