@@ -20,7 +20,18 @@
 </div>
 
 ## Overview 
-sdasdad
+It is often needed to convert labeled objects from one geometry to another while doing computer vision reseach. There are huge number of scenarious , here are some examples:
+- you labeled data with polygons to train semantic segmentation model, and then you decided to check detection model. It means that you have to convert your labels from polygons to rectangles (bounding boxes)
+- or you applied neural network to images and it produced pre-annotations as bitmaps (masks). Then you want to transform them to polygons for manual correction.
+
+This app covers following transformations:
+- from `Bitmap` to `Polygon`, `Rectangle` and `AnyShape`
+- from `Polygon` to `Rectangle`, `Bitmap` and `AnyShape`
+- from `Polyline` to `Rectangle`, `Bitmap`, `Polygon`, `AnyShape`
+- from `Rectangle` to `Polygon`, `Bitmap` and `AnyShape`
+- from `Graph` (i.e. `Keypoints`) to `Rectangle` and `AnyShape`
+- from `Point` to `AnyShape`
+- `Cuboid`, `Cuboid3d`, `Pointcloud` (segmentation of point clouds), `Point3d`, are not supported yet (send us a feature request if you need it)
 
 
 ## How To Run
