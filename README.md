@@ -20,29 +20,7 @@
 </div>
 
 ## Overview 
-
-In Supervisely, you have to define classes before labeling. The shape of class specifies instruments that are available in annotation interface. For example, if you need to label cars with polygonal tool, you have to create class `Car` with shape `Polygon`.
-
-Supervisely supports the following shapes:
-- Rectangle
-- Polygon
-- Bitmap
-- Line (polyline)
-- Point
-- Keypoints (graphs) - sets of vertices connected by edges
-- Cuboids (2D and 3D)
-- AnyShape (will be explained below)
-- ...
-
-Example: objects of class `Bitmap` can be labeled with the following instruments: brush + eraser, pen, polygon, SmartTool. Whatever instrument is used, these objects always are saved as masks (raster). 
-
-### What is AnyShape class? 
-
-Let's concider the following case: semantic segmentation of cars. You would like to label cars faster with SmartTool (NN that integrated to labeling interface and produces masks). If SmartTool produces inaccurate predictions you will label objects manually with Polygonal tool. So, you want to label objects of class `car` with absolutely different instruments: Polygonal tool (vector) and SmartTool (raster). How to do it?
-
-**First option**: Create two separate classes: `car_bitmap` with shape `Bitmap` and `car_polygon` with shape `Polygon`. Thus SmartTool objects will be of class `car_bitmap` and polygonal objects will be of class `car_polygon`. The main drawback: this approach doubles up the number of classes and later (before NN training) you have to merge class pairs to a single one anyway. And what if you have tens or even hundreds of classes?
-
-**Second option**: Create class `car` with shape `AnyShape`. It means that you can use all annotation instruments to label objects. The main drawback: your labeling team have to understand annotation requirements well. For example, if labelers are not restricted to specific instrument, you expect polygons but they can label objects with rectangles. `¯\_(ツ)_/¯`
+sdasdad
 
 
 ## How To Run
@@ -60,11 +38,13 @@ Once app is started, new task appear in workspace tasks. Monitor progress from "
 <img src="https://i.imgur.com/JqHh9pZ.png"/>
 
 ## Explanation
-
-- Result project name = original name + "(without AnyShape)" suffix
+    
+- Result project name = original name + "(new shapes)" suffix
 
 - Your data is safe: app creates new project with modified classes and objects. The original project remains unchanged
 
-- All "AnyShape" classes will be unpacked to equivalent classes with strictly defined shapes. In our example the class `car` will be splited to classes `car_polygon`, `car_bitmap`, `car_rectangle`. 
+- Before converting `AnyShape` classes, you have to unpack it with another app - [Unpack Anyshape](https://github.com/supervisely-ecosystem/unpack-anyshape) 
 
 - Colors of new classes will be generated randomly
+
+- Note: transformation from raster (bitmap) to vector (polygon) will result in huge number of points. App performs approximation to reduce the number. That can lead to slight loss of accuracy at borders. Special settings to control approximation will be released in next version.
