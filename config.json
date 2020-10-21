@@ -6,7 +6,7 @@
     "transform"
   ],
   "description": "Converts shapes of classes (e.g. polygon to bitmap) and all corresponding objects",
-  "docker_image": "docker.deepsystems.io/supervisely/five/base-py-sdk-internal:apps2",
+  "docker_image": "supervisely/base-py-sdk:6",
   "main_script": "src/convert_class_shape.py",
   "gui_template": "src/gui.html",
   "modal_template": "src/modal.html",
