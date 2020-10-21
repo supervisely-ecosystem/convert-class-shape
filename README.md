@@ -38,7 +38,7 @@ This app covers following transformations:
 
 ### Step 1: Run from context menu of project
 
-Go to "Context Menu" (images project or dataset) -> "Run App" -> "Transform" -> "Convert Class Shape"
+Go to "Context Menu" (images project) -> "Run App" -> "Transform" -> "Convert Class Shape"
 
 <img src="https://i.imgur.com/6jVrnAK.png" width="600"/>
 
