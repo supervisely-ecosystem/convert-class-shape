@@ -19,7 +19,7 @@
 </div>
 
 ## Overview 
-It is often needed to convert labeled objects from one geometry to another while doing computer vision reseach. There are huge number of scenarious , here are some examples:
+It is often needed to convert labeled objects from one geometry to another while doing computer vision reseach. There are huge number of scenarios , here are some examples:
 - you labeled data with polygons to train semantic segmentation model, and then you decided to try detection model. Therefore you have to convert your labels from polygons to rectangles (bounding boxes)
 - or you applied neural network to images and it produced pre-annotations as bitmaps (masks). Then you want to transform them to polygons for manual correction.
 
