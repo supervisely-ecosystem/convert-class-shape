@@ -15,7 +15,10 @@
   "icon": "https://i.imgur.com/TxR0dfX.png",
   "icon_background": "#FFFFFF",
   "context_menu": {
-    "target": ["images_project"],
+    "target": [
+      "images_project"
+    ],
     "context_category": "Transform"
-  }
+  },
+  "poster": "https://i.imgur.com/FTrBajv.png"
 }
