@@ -1,26 +1,26 @@
 {
-  "name": "Convert Class Shape",
-  "type": "app",
-  "categories": [
-    "images",
-    "annotation transformation",
-    "data operations"
-  ],
-  "description": "Converts shapes of classes (e.g. polygon to bitmap) and all corresponding objects",
-  "docker_image": "supervisely/base-py-sdk:6.72.55",
-  "instance_version": "6.4.57",
-  "main_script": "src/convert_class_shape.py",
-  "gui_template": "src/gui.html",
-  "modal_template": "src/modal.html",
-  "task_location": "workspace_tasks",
-  "isolate": true,
-  "icon": "https://i.imgur.com/TxR0dfX.png",
-  "icon_background": "#FFFFFF",
-  "context_menu": {
-    "target": [
-      "images_project"
+    "name": "Convert Class Shape",
+    "type": "app",
+    "categories": [
+        "images",
+        "annotation transformation",
+        "data operations"
     ],
-    "context_category": "Transform"
-  },
-  "poster": "https://user-images.githubusercontent.com/106374579/186599439-6b6848e6-48cb-4fdc-912e-1a4493c79f41.png"
+    "description": "Converts shapes of classes (e.g. polygon to bitmap) and all corresponding objects",
+    "docker_image": "supervisely/base-py-sdk:6.72.81",
+    "instance_version": "6.4.57",
+    "main_script": "src/convert_class_shape.py",
+    "gui_template": "src/gui.html",
+    "modal_template": "src/modal.html",
+    "task_location": "workspace_tasks",
+    "isolate": true,
+    "icon": "https://i.imgur.com/TxR0dfX.png",
+    "icon_background": "#FFFFFF",
+    "context_menu": {
+        "target": [
+            "images_project"
+        ],
+        "context_category": "Transform"
+    },
+    "poster": "https://user-images.githubusercontent.com/106374579/186599439-6b6848e6-48cb-4fdc-912e-1a4493c79f41.png"
 }
