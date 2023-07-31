@@ -7,7 +7,7 @@
         "data operations"
     ],
     "description": "Converts shapes of classes (e.g. polygon to bitmap) and all corresponding objects",
-    "docker_image": "supervisely/data-operations:0.0.3",
+    "docker_image": "supervisely/data-operations:0.0.5",
     "instance_version": "6.4.57",
     "main_script": "src/convert_class_shape.py",
     "gui_template": "src/gui.html",
