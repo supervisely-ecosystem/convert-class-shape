@@ -1,6 +1,6 @@
 import os
 import supervisely as sly
-from supervisely_lib.annotation.json_geometries_map import GET_GEOMETRY_FROM_STR
+from supervisely.annotation.json_geometries_map import GET_GEOMETRY_FROM_STR
 from supervisely.app.v1.app_service import AppService
 
 my_app: AppService = AppService()
@@ -90,13 +90,10 @@ def convert(api: sly.Api, task_id, context, state, app_logger):
         raise RuntimeError("Project {!r} has type {!r}. App works only with type {!r}"
                            .format(src_project.name, src_project.type, sly.ProjectType.IMAGES))
 
-    src_meta_json = api.project.get_meta(src_project.id)
-    src_meta = sly.ProjectMeta.from_json(src_meta_json)
-
     new_classes = []
     need_action = False
     selectors = state["selectors"]
-    for cls in src_meta.obj_classes:
+    for cls in ORIGINAL_META.obj_classes:
         cls: sly.ObjClass
         dest = selectors[cls.name]
         if dest == REMAIN_UNCHANGED:
@@ -124,7 +121,7 @@ def convert(api: sly.Api, task_id, context, state, app_logger):
                                      change_name_if_conflict=True)
     sly.logger.info('Destination project is created.',
                     extra={'project_id': dst_project.id, 'project_name': dst_project.name})
-    dst_meta = src_meta.clone(obj_classes=sly.ObjClassCollection(new_classes))
+    dst_meta = ORIGINAL_META.clone(obj_classes=sly.ObjClassCollection(new_classes))
     api.project.update_meta(dst_project.id, dst_meta.to_json())
 
     total_progress = api.project.get_images_count(src_project.id)
@@ -139,7 +136,7 @@ def convert(api: sly.Api, task_id, context, state, app_logger):
             img_names, img_ids, img_metas = zip(*((x.name, x.id, x.meta) for x in img_infos))
 
             ann_infos = api.annotation.download_batch(ds_info.id, img_ids)
-            anns = [sly.Annotation.from_json(x.annotation, src_meta) for x in ann_infos]
+            anns = [sly.Annotation.from_json(x.annotation, ORIGINAL_META) for x in ann_infos]
 
             new_anns = [convert_annotation(ann, dst_meta) for ann in anns]
 
@@ -174,6 +171,7 @@ def convert(api: sly.Api, task_id, context, state, app_logger):
     my_app.stop()
 
 
+@sly.handle_exceptions
 def main():
     api = sly.Api.from_env()
     data, state = init_data_and_state(api)
