@@ -1,13 +1,12 @@
 import os
 import supervisely as sly
 from supervisely.annotation.json_geometries_map import GET_GEOMETRY_FROM_STR
-from supervisely.app.v1.app_service import AppService
 
-my_app: AppService = AppService()
+my_app = sly.AppService()
 
-TEAM_ID = int(os.environ['context.teamId'])
-WORKSPACE_ID = int(os.environ['context.workspaceId'])
-PROJECT_ID = int(os.environ['modal.state.slyProjectId'])
+TEAM_ID = sly.env.team_id()
+WORKSPACE_ID = sly.env.workspace_id()
+PROJECT_ID = sly.env.project_id()
 
 ORIGINAL_META = None
 REMAIN_UNCHANGED = "remain unchanged"
@@ -171,7 +170,6 @@ def convert(api: sly.Api, task_id, context, state, app_logger):
     my_app.stop()
 
 
-@sly.handle_exceptions
 def main():
     api = sly.Api.from_env()
     data, state = init_data_and_state(api)
@@ -188,4 +186,4 @@ def main():
 
 
 if __name__ == "__main__":
-    sly.main_wrapper("main", main)
+    sly.main_wrapper("main", main, log_for_agent=False)
