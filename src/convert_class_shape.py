@@ -13,6 +13,7 @@ REMAIN_UNCHANGED = "remain unchanged"
 
 SHAPE_TO_ICON = {
     sly.Rectangle: {"icon": "zmdi zmdi-crop-din", "color": "#ea9d22", "bg": "#fcefd9"},
+    sly.AlphaMask: {"icon": "zmdi zmdi-wallpaper", "color": "#ea2772", "bg": "#fcefc2"},
     sly.Bitmap: {"icon": "zmdi zmdi-brush", "color": "#ff8461", "bg": "#ffebe3"},
     sly.Polygon: {"icon": "icons8-polygon", "color": "#2cd26e", "bg": "#d8f8e7"},
     sly.AnyGeometry: {"icon": "zmdi zmdi-grain", "color": "#e09e11", "bg": "#faf0d8"},
