@@ -1,6 +1,7 @@
 import os
 import supervisely as sly
 from supervisely.annotation.json_geometries_map import GET_GEOMETRY_FROM_STR
+import workflow as w
 
 my_app = sly.AppService()
 
@@ -85,6 +86,8 @@ def convert(api: sly.Api, task_id, context, state, app_logger):
     PROJECT_ID = int(os.environ['modal.state.slyProjectId'])
     src_project = api.project.get_info_by_id(PROJECT_ID)
 
+
+    w.workflow_input(api, src_project.id)
     if src_project.type != str(sly.ProjectType.IMAGES):
         raise RuntimeError("Project {!r} has type {!r}. App works only with type {!r}"
                            .format(src_project.name, src_project.type, sly.ProjectType.IMAGES))
@@ -118,6 +121,8 @@ def convert(api: sly.Api, task_id, context, state, app_logger):
     dst_project = api.project.create(src_project.workspace_id, src_project.name + "(new shapes)",
                                      description="new shapes",
                                      change_name_if_conflict=True)
+    
+    w.workflow_output(api, dst_project.id)
     sly.logger.info('Destination project is created.',
                     extra={'project_id': dst_project.id, 'project_name': dst_project.name})
     dst_meta = ORIGINAL_META.clone(obj_classes=sly.ObjClassCollection(new_classes))
