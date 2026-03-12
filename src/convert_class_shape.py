@@ -1,3 +1,4 @@
+import asyncio
 import os
 import supervisely as sly
 from supervisely.annotation.json_geometries_map import GET_GEOMETRY_FROM_STR
@@ -187,6 +188,7 @@ def main():
     # state["showFinishDialog"] = False
 
     # Run application service
+    asyncio.set_event_loop(asyncio.new_event_loop())
     my_app.run(data=data, state=state)
 
 
