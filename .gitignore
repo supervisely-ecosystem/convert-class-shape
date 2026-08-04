@@ -1,2 +1,4 @@
 /secret_debug.env
 .DS_Store
+__pycache__/
+*.pyc
