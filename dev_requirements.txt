@@ -1,1 +1,1 @@
-supervisely[agent]==6.74.22
+supervisely[agent]==6.74.34

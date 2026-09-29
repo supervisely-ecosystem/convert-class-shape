@@ -7,8 +7,8 @@
         "data operations"
     ],
     "description": "Converts class shapes, including bound polygons and Multipolygon objects",
-    "docker_image": "supervisely/base-py-sdk:6.74.22",
-    "min_instance_version": "6.17.8",
+    "docker_image": "supervisely/base-py-sdk:6.74.34",
+    "min_instance_version": "6.17.22",
     "main_script": "src/convert_class_shape.py",
     "gui_template": "src/gui.html",
     "modal_template": "src/modal.html",
