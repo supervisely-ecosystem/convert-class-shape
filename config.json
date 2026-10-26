@@ -1,26 +1,21 @@
 {
-    "name": "Convert Class Shape",
-    "type": "app",
-    "categories": [
-        "images",
-        "annotation transformation",
-        "data operations"
-    ],
-    "description": "Converts class shapes, including bound polygons and Multipolygon objects",
-    "docker_image": "supervisely/base-py-sdk:6.74.34",
-    "min_instance_version": "6.17.22",
-    "main_script": "src/convert_class_shape.py",
-    "gui_template": "src/gui.html",
-    "modal_template": "src/modal.html",
-    "task_location": "workspace_tasks",
-    "isolate": true,
-    "icon": "https://i.imgur.com/TxR0dfX.png",
-    "icon_background": "#FFFFFF",
-    "context_menu": {
-        "target": [
-            "images_project"
-        ],
-        "context_category": "Transform"
-    },
-    "poster": "https://user-images.githubusercontent.com/106374579/186599439-6b6848e6-48cb-4fdc-912e-1a4493c79f41.png"
+  "name": "Convert Class Shape",
+  "type": "app",
+  "version": "2.0.0",
+  "categories": ["images", "annotation transformation", "data operations"],
+  "description": "Converts class shapes, including bound polygons and Multipolygon objects",
+  "docker_image": "supervisely/base-py-sdk-hardened:6.74.34",
+  "min_instance_version": "6.17.22",
+  "entrypoint": "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000 --ws websockets",
+  "port": 8000,
+  "modal_template": "src/modal.html",
+  "task_location": "workspace_tasks",
+  "isolate": true,
+  "icon": "https://i.imgur.com/TxR0dfX.png",
+  "icon_background": "#FFFFFF",
+  "context_menu": {
+    "target": ["images_project"],
+    "context_category": "Transform"
+  },
+  "poster": "https://user-images.githubusercontent.com/106374579/186599439-6b6848e6-48cb-4fdc-912e-1a4493c79f41.png"
 }
