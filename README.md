@@ -23,12 +23,15 @@ It is often needed to convert labeled objects from one geometry to another while
 - or you applied neural network to images and it produced pre-annotations as bitmaps (masks). Then you want to transform them to polygons for manual correction.
 
 This app covers following transformations:
-- from `Bitmap` to `Polygon`, `Rectangle` and `AnyShape`
-- from `Polygon` to `Rectangle`, `Bitmap` and `AnyShape`
+- from `Bitmap` to `Polygon`, `Multipolygon`, `Rectangle`, `AlphaMask` and `AnyShape`
+- from `AlphaMask` to `Polygon`, `Multipolygon`, `Rectangle`, `Bitmap` and `AnyShape`
+- from `Polygon` to `Rectangle`, `Bitmap`, `AlphaMask` and `AnyShape`
 - from `Polygon` to `Multipolygon`; polygons of the same class that share a binding are combined into one object
 - from `Multipolygon` to `Polygon`; polygon parts receive one shared binding so they remain one logical object
-- from `Polyline` to `Rectangle`, `Bitmap`, `Polygon`, `AnyShape`
-- from `Rectangle` to `Polygon`, `Bitmap` and `AnyShape`
+- from `Multipolygon` to `Rectangle`, `Bitmap`, `AlphaMask` and `AnyShape`
+- from `Polyline` to `Rectangle`, `Bitmap`, `AlphaMask`, `Polygon`, `AnyShape`
+- from `Rectangle` to `Polygon`, `Bitmap`, `AlphaMask`, `OrientedBBox` and `AnyShape`
+- from `OrientedBBox` to `Polygon`, `Bitmap`, `AlphaMask` and `AnyShape`
 - from `Graph` (i.e. `Keypoints`) to `Rectangle` and `AnyShape`
 - from `Point` to `AnyShape`
 - `Cuboid`, `Cuboid3d`, `Pointcloud` (segmentation of point clouds), `Point3d` are not supported yet (send us a feature request if you need it)
@@ -36,10 +39,11 @@ This app covers following transformations:
 Notes:
 - Result project name = original name + "(new shapes)" suffix
 - Your data is safe: app creates new project with modified classes and objects. The original project remains unchanged
+- The new project keeps the dataset structure, including nested datasets, image names and image metadata
 - Polygon binding relationships are preserved during a Polygon → Multipolygon → Polygon round trip. The instance key may be regenerated because the server removes bindings from single objects; an unbound Multipolygon with multiple parts receives one new shared binding when split.
 - Before converting `AnyShape` classes, you have to unpack it with another app - [Unpack Anyshape](https://github.com/supervisely-ecosystem/unpack-anyshape) 
-- Colors of new classes will be generated randomly
-- Note: transformation from raster (bitmap) to vector (polygon) will result in huge number of points. App performs approximation to reduce the number. That can lead to slight loss of accuracy at borders. Special settings to control approximation will be released in next version.
+- Colors of classes stay the same
+- Note: transformation from raster (bitmap) to vector (polygon) will result in huge number of points. App performs approximation to reduce the number. That can lead to slight loss of accuracy at borders.
 
 ## How To Run
 
@@ -56,7 +60,7 @@ Once app is started, new task appear in workspace tasks. Wait message `Applicati
 
 ### Step 3: Define transformations
 
-App contains 3 sections: information about input project, information about output and the list of all classes from input project. In column `CONVERT TO` there are dropdown lists in front of each class (row of the table). You have to define transformations for classes of interest. 
+App contains 3 sections: information about input project, information about output and the list of all classes from input project (sorted by name). Each class has a dropdown list with the shapes it can be converted to. You have to define transformations for classes of interest. 
 
 Default `remain unchanged` option is selected and means that class and all its objects will be copied without modification to a new project. Dropdown lists only contain allowed shapes (see <a href="#Overview">Overview</a>), for example `Rectangle` can not be transformed to `Polyline` or `Point`. 
 
@@ -64,7 +68,7 @@ Default `remain unchanged` option is selected and means that class and all its o
 
 ### Step 4: Press RUN button and wait
 
-Press `Run` button. The progress bas will appear in `Output` section. Also you can monitor progress from tasks list of the current workspace.
+Press `Run` button. The progress bar will appear in `Output` section. Also you can monitor progress from tasks list of the current workspace.
 
 <img src="https://i.imgur.com/rCNNniF.png" width="450"/>
 
